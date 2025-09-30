@@ -1,4 +1,4 @@
-# Digital Time - IFQ557
+# Digital Time 
 
 This project is an ecommerce website for watches.
 
