@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block body %}
+<div class="container rounded mt-5 mb-5 padding-top: 300px">
+    <div class="row">
+        <div class="col ml-3 mt-3">
+            <h1>Checkout</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col m-3">
+            {{wtf.quick_form(form)}}
+        </div>
+    </div>
+</div>
+{% endblock %}

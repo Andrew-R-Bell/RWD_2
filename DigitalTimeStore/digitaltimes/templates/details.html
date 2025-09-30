@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="container rounded mt-5 mb-5 header">
+    <div class="row">
+        <div class="col-lg-6 col-md-8 col-10 m-3 mx-auto">
+            <h1>{{ watch.shortDesc }}</h1>
+            <h3>{{ watch.colour.capitalize() }} {{ watch.style.capitalize() }} Watch</h3>
+            <img class="image-border" src="{{ url_for('static', filename='img/'+watch.image) }}"
+                alt="{{ watch.colour.capitalize() }} {{ watch.style.capitalize() }} Watch" width="100%">
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-10">
+            <p style="text-align: justify;">{{ watch.description | safe }}</p>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-10" style="text-align: justify;">
+            <h5><b>Price</b></h5>
+            <p style="font-size:larger;"><b>{{ "${:,.2f}".format(watch.price) }}</b></p>
+            <h5><b>Colour</b></h5>
+            <p>{{ watch.colour.capitalize() }}</p>
+            <h5><b>Specifications</b></h5>
+            <p>{{ watch.specifications | safe }}</p>
+            <h5><b>Reviews</b></h5>
+            <i class="fas fa-user-circle fa-3x"></i>
+            <div class="media-body">
+                <div class="text-warning">
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star-half-alt"></span>
+                </div>
+                <div>
+                    <p>{{ watch.review }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-10">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-8 mb-2 mx-auto">
+                        <a class="btn btn-primary" href="/" style="height: 45px">Continue Shopping</a>
+                    </div>
+                    <div class="col-md col-0">
+
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-8 mb-3 mx-auto">
+                        <form action="/cart" , method="POST">
+                            <input type="hidden" name="watchId" value="{{ watch.id }}">
+                            <button type="submit" class="btn btn-success btn-block" style="height: 45px">Add to
+                                cart</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}

@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="container rounded mt-5 mb-5 header">
+
+    <div class="col-md-12">
+        <section>
+            <div style="margin-top:5px">
+                <h1 class="container text-center text-dark display-1">
+                    The Home of <br>
+                    Digital Watches
+                </h1>
+            </div>
+        </section>
+    </div>
+
+    <!--    CAROUSEL  with watches -->
+    <section>
+        <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="3000">
+                    <img src="{{url_for('static', filename='img/carousel1.png')}}" class="d-block w-100" alt="Photo 1">
+                </div>
+                <div class="carousel-item" data-bs-interval="3000">
+                    <img src="{{url_for('static', filename='img/carousel2.png')}}"" class=" d-block w-100"
+                        alt="Photo 2">
+                </div>
+                <div class="carousel-item" data-bs-interval="3000">
+                    <img src="{{url_for('static', filename='img/carousel3.png')}}" class="d-block w-100" alt="Photo 3">
+                </div>
+                <div class="carousel-item" data-bs-interval="3000">
+                    <img src="{{url_for('static', filename='img/carousel4.png')}}" class="d-block w-100" alt="Photo 4">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+    <!-- End of the carousel -->
+
+
+    <!-- display the Watches to the user -->
+    <section>
+        <div class="text-dark text-center">
+            <div>
+                <h1 class="text-center text-dark">Select a watch from our great range</h1>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <!-- <div class="card-deck"> -->
+        <div class="container style=" margin-top:30px">
+            <div class="row row-cols-1 row-cols-md-4">
+                {% for watch in watches%}
+                <div class="col mb-4">
+                    <!-- <div class="card"> -->
+                    <div class="card" style="width:250px">
+                        <img class="card-img-top" src="{{url_for('static', filename='img/'+watch.image)}}"
+                            alt="Card image">
+                        <div class="card-body">
+                            <h5 class="card-title" style="font-size: 1rem">{{watch.shortDesc}}</h5>
+                            <form action="/cart" , method="POST">
+                                <input type="hidden" name="watchId" value="{{ watch.id }}">
+                                <div class="row">
+                                    <div class="col my-auto">
+                                        <b>{{ "${:,.2f}".format(watch.price) }}</b>
+                                    </div>
+                                    <div class="col">
+                                        <a href="{{ url_for('main.details', watchId=watch.id) }}"
+                                            class="btn btn-primary">Watch Details</a>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col">
+                                        <button type="submit" class="btn btn-success btn-block">Add to cart</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact US -->
+    <section style="margin-bottom:5px; ">
+        <div class="row justify-content-center">
+            <p>
+            <h3 class="text-center">Contact Us</h3>
+            </p>
+            <a role="button" href="/contactus" class="btn btn-primary w-25" style="margin-bottom:20px;">Send
+                Message!</a>
+        </div>
+    </section>
+
+</div>
+{% endblock %}

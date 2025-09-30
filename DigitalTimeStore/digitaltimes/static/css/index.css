@@ -1,0 +1,19 @@
+body {
+    background-image: url("../img/watchback.png");
+    font-family: "helvetica", sans-serif;
+    padding-top: 100px; /* This should allow for the height of header */
+}
+
+.container {
+    background-color: white;
+}
+
+.header {
+    text-align: center;
+}
+
+.image-border {
+    border: 3px solid grey;
+    border-radius: 12px;
+}
+
